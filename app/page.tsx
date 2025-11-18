@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { supabase } from "@/lib/supabaseClient";
 
 // 年利で毎月積み立てした場合の将来価値（複利）
@@ -187,6 +187,7 @@ export default function Home() {
   const [monthlyPremium, setMonthlyPremium] = useState<string>("3000");
   const [benefitAmount, setBenefitAmount] = useState<string>("1000000");
   const [annualRate, setAnnualRate] = useState<string>("5");
+  const resultRef = useRef<HTMLDivElement | null>(null);
 
   const [riskType, setRiskType] = useState<InsuranceTypeValue>("cancer");
   const [age, setAge] = useState<string>("40");
@@ -259,6 +260,9 @@ export default function Home() {
       });
     } else {
       setRiskInfo(null);
+    }
+    if (resultRef.current) {
+      resultRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
 
@@ -486,7 +490,7 @@ export default function Home() {
                 </label>
                 <input
                   type="number"
-                  className="border rounded-lg px-3 py-2 w-full text-sm bg-white"
+                  className="border rounded-lg px-3 py-2 w-full text-sm bg-white text-slate-900"
                   value={age}
                   onChange={(e) => setAge(e.target.value)}
                 />
@@ -524,7 +528,7 @@ export default function Home() {
               </label>
               <input
                 type="number"
-                className="border rounded-lg px-3 py-2 w-full text-sm bg-white"
+                className="border rounded-lg px-3 py-2 w-full text-sm bg-slate-50 text-slate-900"
                 value={monthlyPremium}
                 onChange={(e) => setMonthlyPremium(e.target.value)}
                 placeholder="例: 3000"
@@ -537,7 +541,7 @@ export default function Home() {
               </label>
               <input
                 type="number"
-                className="border rounded-lg px-3 py-2 w-full text-sm bg-white"
+                className="border rounded-lg px-3 py-2 w-full text-sm bg-slate-50 text-slate-900"
                 value={benefitAmount}
                 onChange={(e) => setBenefitAmount(e.target.value)}
                 placeholder="例: 1000000（100万円）"
@@ -554,7 +558,7 @@ export default function Home() {
               </label>
               <input
                 type="number"
-                className="border rounded-lg px-3 py-2 w-full text-sm bg-white"
+                className="border rounded-lg px-3 py-2 w-full text-sm bg-slate-50 text-slate-900"
                 value={annualRate}
                 onChange={(e) => setAnnualRate(e.target.value)}
                 placeholder="例: 5"
@@ -637,7 +641,7 @@ export default function Home() {
 
         {/* 結果エリア */}
         {results && (
-          <section className="space-y-4 mb-10">
+          <section ref={resultRef} className="space-y-4 mb-10">
             {riskInfo && (
               <div className="border rounded-2xl p-4 bg-sky-50 text-sm border-sky-100">
                 <div className="font-semibold mb-1 text-sky-900">
