@@ -468,7 +468,7 @@ export default function Home() {
                 保険の種類
               </label>
               <select
-                className="border rounded-lg px-3 py-2 w-full text-sm bg-slate-50"
+                className="border rounded-lg px-3 py-2 w-full text-sm bg-slate-50 text-slate-900"
                 value={riskType}
                 onChange={(e) => setRiskType(e.target.value as InsuranceTypeValue)}
               >
@@ -501,7 +501,7 @@ export default function Home() {
                   性別
                 </label>
                 <select
-                  className="border rounded-lg px-3 py-2 w-full text-sm bg-white"
+                  className="border rounded-lg px-3 py-2 w-full text-sm bg-slate-50 text-slate-900"
                   value={sex}
                   onChange={(e) => setSex(e.target.value)}
                 >
@@ -591,7 +591,7 @@ export default function Home() {
             </p>
 
             <textarea
-              className="border rounded-lg px-3 py-2 w-full text-sm bg-slate-50"
+              className="border rounded-lg px-3 py-2 w-full text-sm g-slate-50 text-slate-900 placeholder:text-slate-400"
               rows={4}
               placeholder="例：◯◯生命の新がん総合保障プランに加入しています。月額は4,980円で、がんと診断されたときに100万円、入院1日5,000円、10年ごとに生存給付金が10万円あります…"
               value={policyText}
@@ -795,7 +795,7 @@ export default function Home() {
             </p>
 
             <textarea
-              className="border rounded-lg px  -3 py-2 w-full text-sm bg-emerald-50"
+              className="border rounded-lg px  -3 py-2 w-full text-sm bg-emerald-50 text-slate-900 placeholder:text-slate-400"
               rows={3}
               placeholder="例：今入っている3つの保険のうち、がんと就業不能の部分をどう整理すればよいか知りたいです。がん診断後は保険料が上がると聞きましたが、投資と比べてどう考えるべきでしょうか？"
               value={chatInput}
